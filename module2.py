@@ -1,10 +1,12 @@
 #!/usr/bin/env python2
 
 import threading
+from profiler import timethis
 
 m2_counter = 0
 m2_lock = threading.Lock()
 
+@timethis
 def testm2():
     global m2_counter
     m2_lock.acquire()
