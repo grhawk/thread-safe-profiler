@@ -3,7 +3,7 @@
 import threading
 import module1 as m1
 import module2 as m2
-import profiler
+import profiler as profiler
 import time
 
 reload(m1)
@@ -30,6 +30,14 @@ reload(profiler)
 
 @profiler.timethis
 def test():
-    pass
+    return 1
 
-test()
+
+def totime():
+    for _ in xrange(100000):
+        test()
+
+
+import profile
+profile.run("totime()")
+print(profiler.profile['test@main.py:31'].ncalls)
